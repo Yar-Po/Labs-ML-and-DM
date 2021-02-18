@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Лабораторная работа №1</title>
+</head>
+<body>
+  <form>
+    <h1> Операции со множествами </h1>
+    <h2> Вам необходимо ввести множество элементов по такому типу: cijb (Цифра, четная цифра, нечётная цифра, буква)</h2>
+    <label>
+      Первое множество: <input type = "text" id="first_many" pattern="([0-9][02468][13579][A-Za-z]\s{0,1})*"><br><br>
+    </label>
+    <label>
+      Второе множество: <input type = "text" id="second_many" pattern="([0-9][02468][13579][A-Za-z]\s{0,1})*"><br><br>
+    </label>
+    <input type = "submit" value = "Соверишть операцию">
+  </form>
+  <br>
+  Объединение:<span id = "Union"></span>
+  <br>Пересечение: <span id = "Cross"></span>
+  <br>Дополнение: <span id = "Ad"></span>
+  <br>Симметрическая разность:<span id = "SimRaz"></span>
+
+  <script>
+    let arr1 = [];
+    let arr2 = [];
+    let result1 , result2, result3, result4;
+    function union(){
+
+      document.getElementById('Union').innerHTML = result1;
+    }
+
+    function cross(){
+
+      document.getElementById('Cross').innerHTML = result2;
+    }
+
+    function ad(){
+
+      document.getElementById('Ad').innerHTML = result3;
+    }
+
+    function simraz(){
+
+      document.getElementById('SimRaz').innerHTML = result4;
+    }
+  </script>
+</body>
+</html>
