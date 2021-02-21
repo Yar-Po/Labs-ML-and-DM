@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Лабораторная работа №1</title>
+</head>
+<body>
+  <form>
+    <h1> Операции со множествами </h1>
+    <h2> Вам необходимо ввести множество элементов по такому типу: cijb (Цифра, четная цифра, нечётная цифра, буква)</h2>
+    <label>
+      Первое множество: <input type = "text" id="first_many" pattern="([0-9][02468][13579][A-Za-z]\s{0,1})*"><br><br>
+    </label>
+    <label>
+      Второе множество: <input type = "text" id="second_many" pattern="([0-9][02468][13579][A-Za-z]\s{0,1})*"><br><br>
+    </label>
+    <input type = "button" id = 'clk1' value = "Объединение">
+    <input type = "button" id = 'clk2' value = "Пересечение">
+    <input type = "button" id = 'clk3' value = "Дополнение">
+    <input type = "button" id = 'clk4' value = "Симметрическая разность">
+  </form>
+  <br>
+  Объединение:<span id = "Union"></span>
+  <br>Пересечение: <span id = "Cross"></span>
+  <br>Дополнение: <span id = "Ad"></span>
+  <br>Симметрическая разность:<span id = "SimRaz"></span>
+
+  <script>
+    let arr1 = [];
+    let arr2 = [];
+    let result1, result2, result3, result4;
+    function union(){
+      arr1 = document.getElementById('first_many').value;
+      arr2 = document.getElementById('second_many').value;
+      let arrUnion = [];
+      let arr1Lenght = arr1.length;
+      let arr2Lenght = arr2.length;
+      for (let i = 0, j = 0, k = 0; k < arr1Lenght + arr2Lenght; k++){
+        if (i == arr1Lenght){
+          arrUnion[k] = arr2[j++];
+        }
+        if (j == arr2Lenght){
+          arrUnion[k] = arr1[i++];
+        }
+        arrUnion[k] = (arr1[i] < arr2[j]) ? arr1[i++] : arr2[j++];
+      }
+      for (let i = 1, j = arrUnion[0], k = 1; i < arr1Lenght + arr2Lenght; i++){
+        if (arrUnion[i] != j){
+          arrUnion[k++] = arrUnion[i];
+          j = arrUnion[i];
+        }
+        arrUnion.length = k;
+        document.getElementById('Union').innerHTML = arrUnion;
+      }
+    }
+
+    function cross(){
+      arr1 = document.getElementById('first_many').value;
+      arr2 = document.getElementById('second_many').value;
+      result2 = arr1 + arr2;
+      document.getElementById('Cross').innerHTML = result2;
+    }
+
+    function ad(){
+
+      document.getElementById('Ad').innerHTML = result3;
+    }
+
+    function simraz(){
+
+      document.getElementById('SimRaz').innerHTML = result4;
+    }
+    clk1.onclick = union;
+    clk2.onclick = cross;
+    clk3.onclick = ad;
+    clk4.onclick = simraz;
+  </script>
+</body>
+</html>
