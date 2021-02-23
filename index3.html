@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Лабораторная работа №1</title>
+</head>
+<body>
+  <form onsubmit="check(); return false;">
+    <h1> Операции со множествами </h1>
+    <h2> Вам необходимо ввести множество элементов по такому типу: cijb (Цифра, четная цифра, нечётная цифра, буква)</h2>
+    <label>
+      Первое множество: <input type = "text" id="first_many" pattern="([0-9][02468][13579][A-Za-z]\s{0,1})*"><br><br>
+    </label>
+    <label>
+      Второе множество: <input type = "text" id="second_many" pattern="([0-9][02468][13579][A-Za-z]\s{0,1})*"><br><br>
+    </label>
+    <input type = "submit" value = "Результат">
+  </form>
+  <br>
+  Объединение:<span id = "Union"></span>
+  <br>Пересечение: <span id = "Cross"></span>
+  <br>Дополнение: <span id = "Ad"></span>
+  <br>Симметрическая разность:<span id = "SimRaz"></span>
+
+  <script>
+    let arr1 = [];
+    let arr2 = [];
+    let result1 = "", result2 = "", result3 = "", result4 = "";
+
+    function union(){
+      let = arrUnion = [];
+      for (let i = 0; i < arr1.length; i++){
+		    if (arrUnion.includes(arr1[i], 0) != true){
+			    arrUnion.push(arr1[i])
+		    }
+	    }
+	    for (let i = 0; i < arr2.length; i++){
+	    	if (arrUnion.includes(arr2[i], 0) != true){
+			    arrUnion.push(arr2[i])
+		    }
+	    }
+      result1 = arrUnion;
+			document.getElementById('Union').innerHTML = result1;
+		}
+
+    function cross(){
+      let arrCross = [];
+      for (let i = 0; i < arr1.length; i++){
+		    for (let j = 0; j < arr2.length; j++){
+			    if(arr1[i] == arr2[j]){
+				    arrCross = arrCross + ' ' + arr1[i];
+			    }
+		    }
+	    }
+      result2 = arrCross;
+      document.getElementById('Cross').innerHTML = result2;
+    }
+
+    function ad(){
+      let arrAd = [];
+      for (let i = 0; i < arr1.length; i++){
+      	if (arr2.includes(arr1[i], 0) != true){
+      		arrAd.push(arr1[i])
+      	}
+      }
+      result3 = arrAd;
+      document.getElementById('Ad').innerHTML = result3;
+    }
+
+    function simraz(){
+      let arrSimRaz = [];
+      for (let i = 0; i < result1.length; i++) {
+      	if (result2.indexOf(result1[i]) == -1) {
+      		arrSimRaz.push(result1[i]);
+      	}
+      }
+      result4 = arrSimRaz;
+      document.getElementById('SimRaz').innerHTML = result4;
+    }
+
+    function check(){
+        arr1T = document.getElementById('first_many').value;
+        arr2T = document.getElementById('second_many').value;
+				arr1T = arr1T.split(' ');
+				arr2T = arr2T.split(' ');
+				for (let i = 0; i < arr1T.length; i++) {
+					if (arr1.indexOf(arr1T[i]) == -1) {
+						arr1.push(arr1T[i]);
+					}
+				}
+				for (let i = 0; i < arr2T.length; i++) {
+					if (arr2.indexOf(arr2T[i]) == -1) {
+						arr2.push(arr2T[i]);
+					}
+			}
+      union();
+      cross();
+      ad();
+      simraz();
+      arr1 = [];
+      arr2 = [];
+  }
+  </script>
+</body>
+</html>
